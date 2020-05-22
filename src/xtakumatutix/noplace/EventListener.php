@@ -23,10 +23,12 @@ class EventListener implements Listener
         $item = $event->getItem();
         $id = $item->getID();
         $damage = $item->getDamage();
-        if ($config->exists($id.":".$damage)){
-        	$message = $this->Main->config->get('表示メッセージ');
-        	$player->sendMessage($message);
-        	$event->setCancelled();
+        if(!$sender->isOP()){
+            if ($config->exists($id.":".$damage)){
+        	    $message = $this->Main->config->get('表示メッセージ');
+        	    $player->sendMessage($message);
+        	    $event->setCancelled();
+        	}
         }
     }
 }

@@ -25,37 +25,43 @@ Class noplaceCommand extends Command
     {
         if($sender->isOP()){
             $id = $this->Main->id;
-            switch ($args[0]){
-                case "set":
-                if(isset($args[1])){
-                    if(!$id->exists($args[1])){
-                        $sender->sendMessage("ID:".$args[1]."を置けないブロックとして登録しました");
-                        $id->set($args[1]);
-                        $id->save();
+            if(isset($args[0])){
+                switch ($args[0]){
+                    case "set":
+                    if(isset($args[1])){
+                        if(!$id->exists($args[1])){
+                            $sender->sendMessage("ID:".$args[1]."を置けないブロックとして登録しました");
+                            $id->set($args[1]);
+                            $id->save();
+                        }else{
+                            $sender->sendMessage("そのブロックIDは先に登録されています");
+                        }
                     }else{
-                        $sender->sendMessage("そのブロックIDは先に登録されています");
+                        $sender->sendMessage("IDを入力してください");
+                        return true;
                     }
-                }else{
-                    $sender->sendMessage("IDを入力してください");
-                    return true;
-                }
+                    break;
 
-                case "remove":
-                if(isset($args[1])){
-                    if($id->exists($args[1])){
-                        $sender->sendMessage("ID:".$args[1]."を置けるようにしました");
-                        $id->remove($args[1]);
-                        $id->save();
+                    case "remove":
+                    if(isset($args[1])){
+                        if($id->exists($args[1])){
+                            $sender->sendMessage("ID:".$args[1]."を置けるようにしました");
+                            $id->remove($args[1]);
+                            $id->save();
+                        }else{
+                            $sender->sendMessage("そのブロックIDは登録されていません");
+                        }
                     }else{
-                        $sender->sendMessage("そのブロックIDは登録されていません");
+                        $sender->sendMessage("IDを入力してください");
+                        return true;
                     }
-                }else{
-                    $sender->sendMessage("IDを入力してください");
-                    return true;
+                    break;
                 }
+            }else{
+                $sender->sendMessage("使い方\n/npolace set <id:damage> 置けないブロックを登録する\n/noplace remove <id:damage> 置けなくしたブロックを置けるようにする");
             }
         }else{
-            $sender->sendMessage("OPのみ使えます");
+            $sender->sendMessage("OPのみ使えます")
         }
         return true;
     }
