@@ -1,0 +1,11 @@
+---
+name: noplace
+main: xtakumatutix\noplace\Main
+version: 1.0.0
+api: 3.0.0
+premissions:
+  noplace:
+    description: "置けないブロックを追加します"
+    default: op
+    usage: /noplace <id:damage>
+...
