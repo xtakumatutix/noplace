@@ -61,7 +61,7 @@ Class noplaceCommand extends Command
                 $sender->sendMessage("使い方\n/npolace set <id:damage> 置けないブロックを登録する\n/noplace remove <id:damage> 置けなくしたブロックを置けるようにする");
             }
         }else{
-            $sender->sendMessage("OPのみ使えます")
+            $sender->sendMessage("OPのみ使えます");
         }
         return true;
     }
